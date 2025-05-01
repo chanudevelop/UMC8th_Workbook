@@ -18,15 +18,16 @@ public class MemberMission extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Enumerated(EnumType.STRING)
-    private MissionStatus status;
-
-    // 오류 잡기
+    // 단방향
     @ManyToOne
     @JoinColumn(name = "member_id")
     private Member member;
-
+    // 단방향
     @ManyToOne
     @JoinColumn(name = "mission_id")
     private Mission mission;
+
+    @Enumerated(EnumType.STRING)
+    @Column(columnDefinition = "VARCHAR(15)")
+    private MissionStatus status;
 }

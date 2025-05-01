@@ -20,16 +20,19 @@ public class Mission extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Integer reward;
-
-    private LocalDate deadline;
-
-    private String missionSpec;
-
     // 단방향 연관관계
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "store_id")
     private Store store;
+
+    @Column(nullable = false)
+    private Integer reward;
+
+    private LocalDate deadline;
+
+    @Column(columnDefinition = "TEXT")
+    private String missionSpec;
+
 
     // 양방향 연관관계
     @OneToMany(mappedBy = "mission", cascade = CascadeType.ALL)
